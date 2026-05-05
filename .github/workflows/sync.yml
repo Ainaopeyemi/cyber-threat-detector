@@ -2,7 +2,6 @@ name: Sync to Hugging Face Hub
 on:
   push:
     branches: [main]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -17,5 +16,6 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        # The --force flag will overwrite the "pre-receive hook declined" error
-        run: git push --force https://Ainaopeyemi:$HF_TOKEN@huggingface.co/spaces/Nishola/cyber-threat-detector main
+        run: |
+          git remote add hf https://Ainaopeyemi:$HF_TOKEN@huggingface.co/spaces/Nishola/cyber-threat-detector
+          git push --force hf main
